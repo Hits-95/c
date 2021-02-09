@@ -4,14 +4,51 @@
 int array[7], i, sum = 0, limit;
 float avg = 0;
 
-int getLimit();
-int* scanArray(int l);
-void printArray(int a[], int l);
-float average(int a[], int l);
+
+int getLimit(){
+   
+    printf("\n Enter the limit for array : \t");
+    scanf("%d", &limit);
+   
+    return limit;
+}
+
+int scanArray(int l){
+   
+    //limit = l;
+    printf("\n Enter %d array elements: \t", l);
+    for(i = 0; i < l; i++){
+       
+        scanf("%d", &array[i]);    
+    }  
+   
+    return array;
+}
+
+void printArray(int a[], int l){
+   
+    printf("\n %d Array elements: \t",l);
+    for(i = 0; i < l; i++){
+       
+        printf("\n %d", a[i]);    
+    }
+}
+
+float average(int a[], int l){
+   
+    printf("\n Avg of array elements :\t");
+    for(i = 0; i < l; i++){
+       
+        sum += a[i];
+    }
+   
+    avg = sum / l;
+    printf("%.2f", avg);
+}
 
 int main(){
    
-    int choice, lim, *a1;
+    int choice, lim, a1[10];
     do{
        
         printf("\n ***** Array Operations Basic ******");
@@ -54,43 +91,3 @@ int main(){
     return 0;
 }
 
-int getLimit(){
-   
-    printf("\n Enter the limit for array : \t");
-    scanf("%d", &limit);
-   
-    return limit;
-}
-
-int* scanArray(int l){
-   
-    //limit = l;
-    printf("\n Enter %d array elements: \t", l);
-    for(i = 0; i < l; i++){
-       
-        scanf("%d", &array[i]);    
-    }  
-   
-    return array;
-}
-
-void printArray(int a[], int l){
-   
-    printf("\n %d Array elements: \t",l);
-    for(i = 0; i < l; i++){
-       
-        printf("\n %d", a[i]);    
-    }
-}
-
-float average(int a[], int l){
-   
-    printf("\n Avg of array elements :\t");
-    for(i = 0; i < l; i++){
-       
-        sum += a[i];
-    }
-   
-    avg = sum / l;
-    printf("%.2f", avg);
-}
