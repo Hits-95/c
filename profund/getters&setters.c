@@ -7,7 +7,6 @@ typedef struct Student {
       //variables
       int rollno;
       char name[10];
-      char department[10];
       char college[10];
 }Student;
 
@@ -18,26 +17,17 @@ int getRollno(Student std){
 char *getName(Student std){
       return std.name;
 }
-char *getDepartment(Student std){
-      return std.department;
-}
-char *getCollege(Student std){
-      return std.college;
-}
+
 
 //setters
-void setRollno(Student std, int rollno){
-      std.rollno = rollno;
+void setRollno(Student std, int r){
+      std.rollno = r;
 }
-void setName(Student std, char name[]){
-      strcpy(std.name, name);
+
+void setName(Student std, char n[]){
+      strcpy(std.name, n);
 }
-void setDepartment(Student std, char department[]){
-      strcpy(std.department, department);
-}
-void setCollege(Student std, char college){
-      strcpy(std.college, college);
-}
+
 
 // global functions
 int getLimit(){
@@ -52,36 +42,55 @@ int getChoice(){
       scanf("%d",&ch);
       return ch;
 }
-Student insetStudent(Student std){
-      printf("\nEnter Rollno : \t");
-      scanf("%d",&std.rollno);
-      return std;
+//insert student info here....
+void insertStudent(Student std){
+    int rollno;
+    char name[10], college[10];
 
+    printf("\n Enter Rollno  : \t");
+    scanf("%d", &rollno);
+    printf("\n Enter Name    : \t");
+    scanf("%s", &name);
+    printf("\n Enter College : \t");
+    scanf("%s", &college);
+
+    //calling setters here....set values in objects...
+    setRollno(std, rollno);
+    setName(std, name);
+    //setCollege(std, collage);
+}
+//display student info here....
+void displayStudent(Student std){
+    //calling getters here...
+    printf("\n  >>> Student info <<<");
+    printf("\n-------------------------");
+    printf("\nRoll No : %d", getRollno(std));
+    printf("\nName    : %s", getName(std));
+    //printf("\nCollege : %s\n", getCollage(std));
 }
 //main body
 int main() {
-      int ch, limit = 0;
+      int ch, limit = 0, i;
+
+
       do{
             printf("\n\t ***>>> MENU <<<***");
             printf("\n\t 1 : Limit");
             printf("\n\t 2 : Insert (%d Students)",limit);
             printf("\n\t 3 : Diplay (%d Studensts)",limit);
 
-            getChoice();
+            ch = getChoice();
             switch(ch){
                   case 1 :
                         limit = getLimit();
+                        Student std[limit];
                   break;
                   case 2 :
-
+                        for(i = 0; i < limit; i++)
+                              insertStudent(std[i]);
                   break;
-                  case 3 :
 
-                  break;
-                  case 4 :
 
-                  break;
-                  default : printf("Invalide choice");
             }
       }while(ch != 4);
       return 0;
