@@ -52,6 +52,12 @@ int getChoice(){
       scanf("%d",&ch);
       return ch;
 }
+Student insetStudent(Student std){
+      printf("\nEnter Rollno : \t");
+      scanf("%d",&std.rollno);
+      return std;
+
+}
 //main body
 int main() {
       int ch, limit = 0;
@@ -67,10 +73,13 @@ int main() {
                         limit = getLimit();
                   break;
                   case 2 :
+
                   break;
                   case 3 :
+
                   break;
                   case 4 :
+
                   break;
                   default : printf("Invalide choice");
             }
