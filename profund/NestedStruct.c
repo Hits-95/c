@@ -34,9 +34,11 @@ Student getStudent(int limit){
     Dept dept;
 
     printf("\nEnter Roll no : \t");
-//    scanf("%d", );
+    scanf("%d", &std.rollno);
     printf("\nEnter Name    : \t");
+    scanf("%d", &std.name);
     printf("\nEnter College : \t");
+    scanf("%d", &std.college);
 }
 
 
