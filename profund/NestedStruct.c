@@ -6,7 +6,7 @@
 //department structure
 typedef struct {
     int dept_no;
-    char dept_name;
+    char *dept_name;
     float fees;
 }Department;
 //student structure
@@ -14,11 +14,8 @@ typedef struct {
     int rollno;
     char name[10];
     char college[10];
-    Department dept ;
-
+    Department dept;
 }*Student;
-
-
 /*
 *** Global functions ...
 */
@@ -38,24 +35,47 @@ Student getStudent(int limit){
             printf("\n\t Enter Roll no : \t");
             scanf("%d", &stud[i].rollno);
             printf("\n\t Enter Name    : \t");
-            scanf("%s", stud[i].name);
+            scanf("%s", &stud[i].name);
             printf("\n\t Enter College : \t");
             scanf("%s", &stud[i].college);
-            return stud;
-        }
+
+            //for department
+            printf("\n\t Departments ");
+            printf("\n\t 1 : IT");
+            printf("\n\t 2 : Medical");
+            printf("\n\t 3 : Math");
+            int ch;
+            printf("\n\t Department : \t");
+            scanf("%d", &ch);
+
+            switch(ch){
+                case 1 :
+                    stud[i].dept.dept_no = 01;
+                    strcpy( stud[i].dept.dept_name, "IT");
+                     stud[i].dept.fees = 60000;
+                break;
+                case 2 :
+                break;
+                case 3 :
+                break;
+            }//end of switch..
+        }//end of for
     }else
         printf("Memory allocation error...");
+    return stud;
 }
 //display single student here...
-void displayStudent(Student stud){
-    printf("\n\t Rollno : %s", stud->rollno);
-    printf("\n\t Name : %s", stud->name);
-    printf("\n\t College: %s", stud->college);
-    printf("\n\t --- About Department ---");
-    printf("\n\t Department No : %d", stud->rollno);
-    printf("\n\t Name : %s", stud->rollno);
-    printf("\n\t Fees : %s", stud->rollno);
-    printf("\n\t -------------------");
+void displayStudent(Student stud, int limit){
+
+    for(int i = 0; i < limit; i++){
+		printf("\n\t Roll No         :  %d", stud[i].rollno);
+        printf("\n\t Name            :  %s", stud[i].name);
+        printf("\n\t College         :  %s", stud[i].college);
+		printf("\n\t Department No   :  %d", stud[i].dept.dept_no);
+		printf("\n\t Department Name :  %s", stud[i].dept.dept_name);
+		printf("\n\t Feed            :  %f", stud[i].dept.fees);
+		printf("\n\t ------------------------");
+    }
 }
 //main body
 int main(){
@@ -78,21 +98,17 @@ int main(){
         switch(ch){
             case 1 :
                 limit = getLimit();
-                break;
+            break;
             case 2 :
                 stud = getStudent(limit);
-                {
 
 
-                for(int i = 0; i<limit :i++){
-                        displayStudent(stud[i]);
+                displayStudent(stud, limit);
 
-                }
-				//hitesh ahire
             break;
-            }
+
         }//end of switch
 
-    }while(ch);
+    }while(ch != 7);
     return 0;
 }
