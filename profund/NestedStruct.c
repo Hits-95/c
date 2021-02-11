@@ -85,9 +85,10 @@ int main(){
 
 
                 for(int i = 0; i<limit :i++){
-                        displayStudent(&stud[i]);
+                        displayStudent(stud[i]);
 
                 }
+				//hitesh ahire
             break;
             }
         }//end of switch
