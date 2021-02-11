@@ -36,7 +36,7 @@ void dispay(Student stud){
     //display data
     printf("\n\t ---- All Students info --- ");
     for(int i = 0; i < n; i++){
-        printf("\n\t Roll no    : %d", stud[i].rollno);
+        printf("\n\t Roll no    : %d", (stud + i)->rollno);
         printf("\n\t Name       : %s", stud[i].name);
         printf("\n\t Percentage : %.2f", stud[i].per);
         printf("\n\t-------------------");
