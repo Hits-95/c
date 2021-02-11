@@ -1,6 +1,4 @@
 #include <stdio.h>
-// A normal function with an int parameter
-// and void return type
 int fun(int a, int b)
 {
     return (a + b);
