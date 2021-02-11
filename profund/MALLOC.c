@@ -1,13 +1,19 @@
 #include "stdio.h"
 #include "conio.h"
-#define n 2
+#define n 5
+
 typedef struct  {
     int rollno;
     char name[10];
     float per;
 }*Student;
 
+/*
+*** global functions
+*/
+
 Student getStudent(){
+    //memory alloction...
     Student stud = (Student) malloc(sizeof(Student) * n);
 
     //get data
@@ -25,6 +31,7 @@ Student getStudent(){
     return stud;
 };
 
+//display all students info
 void dispay(Student stud){
     //display data
     printf("\n\t ---- All Students info --- ");
@@ -36,8 +43,8 @@ void dispay(Student stud){
     }
 }
 
+//main body
 int main(){
-    int i;
     dispay(getStudent()); //calling both functions ...
     return 0;
 }
