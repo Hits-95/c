@@ -6,7 +6,7 @@
 //department structure
 typedef struct {
     int dept_no;
-    char *dept_name;
+    char dept_name[10];
     float fees;
 }Department;
 //student structure
@@ -45,27 +45,37 @@ Student getStudent(int limit){
             printf("\n\t 2 : Medical");
             printf("\n\t 3 : Math");
             int ch;
-            printf("\n\t Department : \t");
+
+            again_department : printf("\n\t Department : \t");
             scanf("%d", &ch);
 
             switch(ch){
                 case 1 :
                     stud[i].dept.dept_no = 01;
                     strcpy( stud[i].dept.dept_name, "IT");
-                     stud[i].dept.fees = 60000;
+                    stud[i].dept.fees = 60000;
                 break;
                 case 2 :
+                    stud[i].dept.dept_no = 02;
+                    strcpy( stud[i].dept.dept_name, "Medical");
+                    stud[i].dept.fees = 100000;
                 break;
                 case 3 :
+                    stud[i].dept.dept_no = 03;
+                    strcpy( stud[i].dept.dept_name, "Math");
+                    stud[i].dept.fees = 80000;
                 break;
+                default :
+                    printf("\n\t Invalid input .... plase try again...");
+                    goto again_department;
             }//end of switch..
         }//end of for
     }else
         printf("Memory allocation error...");
     return stud;
 }
-//display single student here...
-void displayStudent(Student stud, int limit){
+//display All student here...
+void displayAllStudent(Student stud, int limit){
 
     for(int i = 0; i < limit; i++){
 		printf("\n\t Roll No         :  %d", stud[i].rollno);
@@ -73,10 +83,27 @@ void displayStudent(Student stud, int limit){
         printf("\n\t College         :  %s", stud[i].college);
 		printf("\n\t Department No   :  %d", stud[i].dept.dept_no);
 		printf("\n\t Department Name :  %s", stud[i].dept.dept_name);
-		printf("\n\t Feed            :  %f", stud[i].dept.fees);
+		printf("\n\t Feed            :  %.2f", stud[i].dept.fees);
 		printf("\n\t ------------------------");
     }
 }
+
+//display stingle Student
+void displayStudent(Student stud, char dept_name[], int limit){
+    for(int i = 0; i < limit; i++){
+        if(!(strcmp( stud[i].dept.dept_name, dept_name))){
+    		printf("\n\t Roll No         :  %d", stud[i].rollno);
+            printf("\n\t Name            :  %s", stud[i].name);
+            printf("\n\t College         :  %s", stud[i].college);
+    		printf("\n\t Department No   :  %d", stud[i].dept.dept_no);
+    		printf("\n\t Department Name :  %s", stud[i].dept.dept_name);
+    		printf("\n\t Feed            :  %.2f", stud[i].dept.fees);
+    		printf("\n\t ------------------------");
+        }else
+            printf("\n\t Not Mach");
+    }
+}
+
 //main body
 int main(){
     int ch, limit,i;
@@ -93,7 +120,7 @@ int main(){
         printf("\n\t 7 : Exit");
         printf("\n\t   ---~~~***~~~---");
 
-        printf("\n\t Enter your choice : \t");
+        try_again : printf("\n\t Enter your choice : \t");
         scanf("%d",&ch);
         switch(ch){
             case 1 :
@@ -101,11 +128,25 @@ int main(){
             break;
             case 2 :
                 stud = getStudent(limit);
-
-
-                displayStudent(stud, limit);
-
             break;
+            case 3 :
+                displayAllStudent(stud, limit);
+            break;
+            case 4 :
+                displayStudent(stud, "IT", limit);
+            break;
+            case 5 :
+                displayStudent(stud, "Medical", limit);
+            break;
+            case 6 :
+                displayStudent(stud, "Math", limit);
+            break;
+            case 7 :
+                exit(0);
+            break;
+            default :
+                printf("\n\t Invalid choice.... try again....");
+                goto try_again;
 
         }//end of switch
 
