@@ -2,7 +2,7 @@
 #include "conio.h"
 #include "string.h"
 #include "stdbool.h" //use for boolean data types
-
+#define size 2
 /*
 *** Structures ***
 */
@@ -18,16 +18,16 @@ struct {
 	int atm_id;
 	float atm_total_cash;
 	LOG_IN login;
-} atm;
+}atm;
 
 //structure for users
-typedef struct {
+struct user {
 	int user_id;
 	int pin;
 	char name[10];
 	float user_total_cash;
 	LOG_IN login;
-};
+}users[size];
 
 /*
 *** Functions ***
