@@ -90,6 +90,10 @@ void displayUsers(){
 		printf("\n\t User-Name  : %s",users[i].login.password);
 	}
 }
+/*
+****	Atm oprations 
+*/
+//check balance
 void checkBalance(int pin){
     for(int i=0; i< size; i++){
         if(users[i].pin == pin){
@@ -98,6 +102,22 @@ void checkBalance(int pin){
         }
     }
 }
+
+//Withdraw Cash
+void withdrawCash(int pin){
+	int temp;
+	printf("\n\t Enter Amount To Withdraw :\t");
+	scanf("%d", &temp);
+
+	for(int i=0; i< size; i++){
+        if(users[i].pin == pin){
+           printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
+           break;
+        }
+    }
+
+
+}
 //enter pin
 int inputPin(){
     int pin;
@@ -105,6 +125,7 @@ int inputPin(){
     scanf("%d", &pin);
     return(pin);
 }
+
 /*
 *** Main methos ***
 */
@@ -154,11 +175,9 @@ int main(){
                     switch(action){
                     	case 1 :
                     	    checkBalance(inputPin());
-
-
-
                     	break;
                     	case 2 :
+                    		withdrawCash(inputPin());
                     	break;
                     	case 3 :
                     	break;
