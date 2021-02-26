@@ -23,9 +23,10 @@ struct {
 //structure for users
 struct user {
 	int user_id;
-	int pin;
 	char name[10];
-	float user_total_cash;
+	char bank_name[10];
+	float user_total_cash ;
+	int pin;
 	LOG_IN login;
 }users[size];
 
@@ -56,7 +57,41 @@ bool isValidLogin(char user_name[], char password[]){
 	return( !strcmp(atm.login.user_name, user_name) && !strcmp(atm.login.password, password) );
 }
 
+// get users info
+void getUsers(){
+	int i;
+	printf("\n\t********User ATM Service**************");
+	for(i=0; i< size; i++){
+		printf("\n\t Enter User Id        :\t");
+		scanf("%d", &users[i].user_id);
+		printf("\n\t Enter Name           :\t");
+		scanf("%s", &users[i].name);
+		printf("\n\t Enter User Bank Name :\t");
+		scanf("%s", &users[i].bank_name);
+		printf("\n\t Enter Deposit Cash   :\t");
+		scanf("%f", &users[i].user_total_cash);
+		printf("\n\t Enter 4 Digit Pin    :\t");
+		scanf("%d", &users[i].pin);
+		printf("\n\t Enter User-Name      :\t");
+		scanf("%s", &users[i].login.user_name);
+		printf("\n\t Enter Pass-Word      :\t");
+		scanf("%s", &users[i].login.password);
+	}
+}
+//display all users
+void displayUsers(){
+    for(int i=0; i< size; i++){
+		printf("\n\t User Id    : %d",users[i].user_id);
+		printf("\n\t Name       : %s",users[i].name);
+		printf("\n\t Bank Name  : %s",users[i].bank_name);
+		printf("\n\t Total Cash  : %f",users[i].user_total_cash);
+		printf("\n\t Pin  : %d",users[i].pin);
+		printf("\n\t User-Name  : %s",users[i].login.user_name);
+		printf("\n\t User-Name  : %s",users[i].login.password);
 
+	}
+
+}
 /*
 *** Main methos ***
 */
@@ -65,7 +100,7 @@ int main(){
 	int ch, action;
 	//set up ATM
 	initATM();
-
+	getUsers();
 
 	do{
 		printf("\n\t********Welcome to ATM Service**************");
@@ -77,8 +112,11 @@ int main(){
 		scanf("%d", &ch);
 
 		switch(ch){
+		    //admin pannel
 			case 1 :
-				printf("\n\t Enter USe-Name :\t");
+
+
+				printf("\n\t Enter User-Name :\t");
 				scanf("%s", &user_name);
 				printf("\n\t Enter Pass-Word :\t");
 				scanf("%s", &password);
@@ -88,6 +126,7 @@ int main(){
 				}else
 					printf("\n\t Invalide users....");
 			break;
+			//user pannel
 			case 2 :
 			    do{
                 	printf("\n\t********User ATM Service**************");
@@ -101,15 +140,18 @@ int main(){
 
                     switch(action){
                     	case 1 :
+
+
                     	break;
                     	case 2 :
                     	break;
                     	case 3 :
                     	break;
                     	case 4 :
+                    		printf("\n\n Thank You Using ATM");
+                    		exit(1);
                     	break;
-                    	default : printf(" Invalide choice....");
-
+                    	default : printf("\n\t Invalide choice....");
                     }
 
 				}while(action != 4);
