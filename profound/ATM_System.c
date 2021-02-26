@@ -84,13 +84,26 @@ void displayUsers(){
 		printf("\n\t User Id    : %d",users[i].user_id);
 		printf("\n\t Name       : %s",users[i].name);
 		printf("\n\t Bank Name  : %s",users[i].bank_name);
-		printf("\n\t Total Cash  : %f",users[i].user_total_cash);
+		printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
 		printf("\n\t Pin  : %d",users[i].pin);
 		printf("\n\t User-Name  : %s",users[i].login.user_name);
 		printf("\n\t User-Name  : %s",users[i].login.password);
-
 	}
-
+}
+void checkBalance(int pin){
+    for(int i=0; i< size; i++){
+        if(users[i].pin == pin){
+           printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
+           break;
+        }
+    }
+}
+//enter pin
+int inputPin(){
+    int pin;
+    printf("\n\t Enter 4 Digit Pin :\t");
+    scanf("%d", &pin);
+    return(pin);
 }
 /*
 *** Main methos ***
@@ -135,11 +148,13 @@ int main(){
                     printf("\n\t 3 : Deposit Cash");
                     printf("\n\t 4 : Quit");
                     printf("\n\t*********************************************");
-                    printf("Enter your choice :\t");
+                    printf("\n\t Enter your choice :\t");
                     scanf("%d", &action);
 
                     switch(action){
                     	case 1 :
+                    	    checkBalance(inputPin());
+
 
 
                     	break;
