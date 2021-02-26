@@ -80,18 +80,19 @@ void getUsers(){
 }
 //display all users
 void displayUsers(){
+    printf("\n\t********Visited User**************");
     for(int i=0; i< size; i++){
-		printf("\n\t User Id    : %d",users[i].user_id);
-		printf("\n\t Name       : %s",users[i].name);
-		printf("\n\t Bank Name  : %s",users[i].bank_name);
+		printf("\n\t User Id     : %d",users[i].user_id);
+		printf("\n\t Name        : %s",users[i].name);
+		printf("\n\t Bank Name   : %s",users[i].bank_name);
 		printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
-		printf("\n\t Pin  : %d",users[i].pin);
-		printf("\n\t User-Name  : %s",users[i].login.user_name);
-		printf("\n\t User-Name  : %s",users[i].login.password);
+		printf("\n\t Pin         : %d",users[i].pin);
+		printf("\n\t User-Name   : %s",users[i].login.user_name);
+		printf("\n\t User-Name   : %s",users[i].login.password);
 	}
 }
 /*
-****	Atm oprations 
+****	Atm oprations
 */
 //check balance
 void checkBalance(int pin){
@@ -109,13 +110,33 @@ void withdrawCash(int pin){
 	printf("\n\t Enter Amount To Withdraw :\t");
 	scanf("%d", &temp);
 
-	for(int i=0; i< size; i++){
-        if(users[i].pin == pin){
-           printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
-           break;
+    if(temp <=  atm.atm_total_cash){
+        for(int i=0; i< size; i++){
+            if(users[i].pin == pin){
+                if(temp <= users[i].user_total_cash){
+                    users[i].user_total_cash -= temp;
+                    atm.atm_total_cash -= temp;
+                    printf("\n\t Collect Your Cash ...");
+                    printf("\n\t Remaining Total Cash  : %.2f",users[i].user_total_cash);
+                    break;
+                }else
+                    printf("\n\t You Have No Enough Balance.... Plase Check it.");
+            }
         }
-    }
+    }else
+        printf("\n\t No Cash in ATM...");
+}
+//Deposit Cash
+void depositCash(int pin){
+	int temp;
+	printf("\n\t Enter Amount To Deposit :\t");
+	scanf("%d", &temp);
 
+	for(int i=0; i< size; i++){
+    	if(users[i].pin == pin){
+    		 users[i].user_total_cash += temp;
+    	}
+    }
 
 }
 //enter pin
@@ -157,6 +178,7 @@ int main(){
 
 				if(isValidLogin(user_name, password)){
 					displayATM();
+
 				}else
 					printf("\n\t Invalide users....");
 			break;
@@ -180,9 +202,11 @@ int main(){
                     		withdrawCash(inputPin());
                     	break;
                     	case 3 :
+                    		depositCash(inputPin());
+                    		displayUsers();
                     	break;
                     	case 4 :
-                    		printf("\n\n Thank You Using ATM");
+                    		printf("\n\n\t Thank You Using ATM !!!");
                     		exit(1);
                     	break;
                     	default : printf("\n\t Invalide choice....");
