@@ -4,8 +4,7 @@ float getAvg(int total, float avg){
     return (total/avg);
 }
 
-int main()
-{
+int main(){
     float total = 300, avg = 0;
     float (*fun_ptr)(int, float) = getAvg; //you can remove & also...
 
