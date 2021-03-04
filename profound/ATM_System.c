@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "conio.h"
 #include "string.h"
+#include "stdlib.h"
 #include "stdbool.h" //use for boolean data types
 #define size 2
 /*
@@ -100,7 +101,10 @@ void checkBalance(int pin){
         if(users[i].pin == pin){
            printf("\n\t Total Cash  : %.2f",users[i].user_total_cash);
            break;
-        }
+        }else{
+			printf("\n\t Password is Wrong...");
+			break;
+		}
     }
 }
 
@@ -212,11 +216,11 @@ int main(){
                     	default : printf("\n\t Invalide choice....");
                     }
 
-				}while(action != 4);
+				}while(action);
 			break;
 			default : printf("\nt Invalide Choice... ");
 
 		}
-	}while(ch != 2);
+	}while(ch);
 	return 0;
 }
